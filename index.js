@@ -25,3 +25,21 @@ app.use('/general', generalRoutes);
 app.use('/managment', managementRouter);
 app.use('/sales', salesRoutes);
 
+const PORT = process.env.PORT || 9000;
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    app.listen(PORT, () => console.log(`Server PORT: ${PORT}`));
+  })
+  .catch((error) => console.log(`${error} did not connect`));
+
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log("MongoDB connected");
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
+    );
+  })
+  .catch((error) => console.log(error));
+
+ 
