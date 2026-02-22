@@ -41,16 +41,16 @@ export const getDashboard = (req, res) => {
 export const getSummary = (req, res) => {
 
   try {
-  res.json({
+   return res.json({
     totalUsers: 1245,
     totalSales: 382,
     todayRevenue: 1290
   })
 
-} catch {
+} catch (error) {
   console.error("getSummary error:", error);
 
-  res.status(500).json({
+   return res.status(500).json({
    error: {
         code: "INTERNAL_ERROR",
         message: "Failed to load summary"
