@@ -1,8 +1,10 @@
 import express from "express";
-import { getDashboard } from "../controllers/general.js";
+import { getDashboard, getSummary } from "../controllers/general.js";
 
 const router = express.Router();
 
 router.get("/dashboard", getDashboard);
+
+router.get('/summary', getSummary);
 
 export default router;

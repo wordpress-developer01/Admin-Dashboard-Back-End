@@ -1,8 +1,9 @@
 export const getTransactions = (req, res) => {
+    
   try {
-    const page = Number(req.query.page) || 1;
-    const pageSize = Number(req.query.pageSize) || 20;
-
+    const parsed = parsePagination(req.query);
+    if (!parsed.ok) return res.status(400).json({ error: parsed.error });
+    const { page, pageSize } = parsed;
     const total = 431;
     const totalPages = Math.ceil(total / pageSize);
 
@@ -45,8 +46,12 @@ export const getTransactions = (req, res) => {
       }
     ];
 
+    const start = (page - 1) * pageSize;
+    const end = start + pageSize;
+    const pageData = transactions.slice(start, end);
+
     res.status(200).json({
-      data: transactions,
+      data: pageData,
       pagination: {
         page,
         pageSize,
@@ -61,7 +66,8 @@ export const getTransactions = (req, res) => {
     res.status(500).json({
       error: {
         code: "INTERNAL_ERROR",
-        message: "Server error"
+        message: "Server error",
+        details: []    
       }
     });
   }

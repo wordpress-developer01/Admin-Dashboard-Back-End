@@ -1,5 +1,3 @@
-
-
 export const getDashboard = (req, res) => {
 
   const metric = req.query.metric || "revenue";
@@ -38,4 +36,12 @@ export const getDashboard = (req, res) => {
     }
   });
 
+};
+
+export const getSummary = (req, res) => {
+  res.json({
+    totalUsers: 1245,
+    totalSales: 382,
+    todayRevenue: 1290
+  })
 };

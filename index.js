@@ -7,7 +7,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import frontendRoutes from './routes/frontend.js';
 import generalRoutes from './routes/general.js';
-import managementRouter from './routes/managment.js';
+import managementRoutes from './routes/management.js';
 import salesRoutes from './routes/sales.js';
 
 dotenv.config();
@@ -22,7 +22,7 @@ app.use(cors());
 
 app.use('/frontend', frontendRoutes);
 app.use('/general', generalRoutes);
-app.use('/managment', managementRouter);
+app.use('/management', managementRoutes);
 app.use('/sales', salesRoutes);
 
 app.get('/health', (req, res) => {
