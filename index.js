@@ -8,7 +8,7 @@ import morgan from 'morgan';
 import frontendRoutes from './routes/frontend.js';
 import generalRoutes from './routes/general.js';
 import managementRouter from './routes/managment.js';
-import salesRoutes from './routes/frontend.js';
+import salesRoutes from './routes/sales.js';
 
 dotenv.config();
 const app = express();
@@ -24,6 +24,10 @@ app.use('/frontend', frontendRoutes);
 app.use('/general', generalRoutes);
 app.use('/managment', managementRouter);
 app.use('/sales', salesRoutes);
+
+app.get('/health', (req, res) => {
+   res.json({ ok: true });
+});
 
 const PORT = process.env.PORT || 9000;
 mongoose.connect(process.env.MONGO_URL)
