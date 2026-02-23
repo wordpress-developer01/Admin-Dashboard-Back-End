@@ -5,14 +5,14 @@ import Sale from "./models/Sale.js";
 
 dotenv.config();
 
-const MONGO_URL = process.env.MONGO_URL || process.env.MONGO_URL;
+const MONGO_URL = process.env.MONGO_URL;
 
 if (!MONGO_URL) {
     console.error("❌ Missing MONGO_URI (or MONGODB_URI) in .env");
     process.exit(1);
 }
 
-function randomInt(nim, max) {
+function randomInt(min, max) {
    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -46,7 +46,7 @@ async function seed() {
         role: pick(roles),
     }));
 
-    const createUsers = await User.insertMany(usersData);
+    const createdUsers = await User.insertMany(usersData);
     console.log(`👤 Created users: ${createdUsers.length}`);
 
     const totalSales = 50;
@@ -74,7 +74,7 @@ async function seed() {
   }
 
 
-  const createSales = await Selection.insertMany(salesData);
+  const createdSales = await Sale.insertMany(salesData);
   console.log(`💰 Created sales: ${createdSales.length}`);
   console.log(`📅 Today sales: ${todaySalesCount}`);
   console.log("✅ Seeding finished");
