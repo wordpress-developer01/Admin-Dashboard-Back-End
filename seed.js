@@ -60,7 +60,7 @@ async function seed() {
     for (let i = 0; i < todaySalesCount; i++) {
     salesData.push({
       amount: randomInt(10, 500), 
-      createdAt: randomDateBetween(todayStart, now)
+      createAt: randomDateBetween(todayStart, now)
     });
   }
 
@@ -69,7 +69,7 @@ async function seed() {
     const end = new Date(todayStart.getTime() - 1);
     salesData.push({
       amount: randomInt(10, 500),
-      createdAt: randomDateBetween(thirtyDaysAgo, end)
+      createAt: randomDateBetween(thirtyDaysAgo, end)
     });
   }
 
