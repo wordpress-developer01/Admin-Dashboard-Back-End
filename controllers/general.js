@@ -43,7 +43,7 @@ startDate.setDate(startDate.getDate() - daysBack);
 
     let groupId;
 
-if (interval === "day") {
+if (interval === "week") {
   groupId = {
     $dateTrunc: {
       date: "$createdAt",
@@ -89,7 +89,7 @@ const aggregation = await Sale.aggregate([
   {
     $project: {
       _id: 0,
-      date: "$_id",
+      date: interval === "week" ? { $dateToString: {format: "%Y-%m-%d", date: "$_id"}} : "$_id",
       value: 1
     }
   }
