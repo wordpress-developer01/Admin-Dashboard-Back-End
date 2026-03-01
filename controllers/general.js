@@ -89,7 +89,7 @@ const aggregation = await Sale.aggregate([
   {
     $project: {
       _id: 0,
-      date: interval === "week" ? { $dateToString: {format: "%Y-%m-%d", date: "$_id"}} : "$_id",
+      date: interval === "week" ? { $dateToString: {format: "%Y-%m-%d", date: "$_id", timezone: "Europe/Istanbul"}} : "$_id",
       value: 1
     }
   }
